@@ -14,7 +14,7 @@ app.use(cors({ origin: 'http://localhost:8080', credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
-const secret = "jdiemtivbj29sn598vjau1";
+const secret = "gdgdhdbcb770785rgdzqws";
 const maxAge = 60 * 60;
 const generateJWT = (id) => {
     return jwt.sign({ id }, secret, { expiresIn: maxAge })

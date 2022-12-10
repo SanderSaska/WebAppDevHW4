@@ -1,41 +1,61 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '../views/Home.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+import AllPosts from "../views/AllPosts.vue";
+import APost from "../views/APost.vue";
+import AddPost from "../views/AddPost.vue";
+import SignUp from "../views/SignUp.vue";
+import LogIn from "../views/Login.vue";
+import ContactUs from "../views/ContactUs.vue";
 
-const routes = [
-  {
-    path: '/',
-    name: 'home',
-    component: Home
-  },
-  {
-    path: '/contactUs',
-    name: 'contactUs',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/ContactUs.vue')
-  },
-  {
-    path: '/signup',
-    name: 'signup',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/SignupView.vue')
-  },
-  {
-    path: '/login',
-    name: 'login',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue')
-  }
+
+
+const routes = [{
+        path: '/',
+        name: 'AllPosts',
+        component: () =>
+            import ("../views/AllPosts.vue")
+    },
+    {
+        path: "/api/allposts",
+        name: "AllPosts",
+        component: AllPosts,
+    },
+    {
+        path: "/api/apost/:id",
+        name: "APost",
+        component: APost,
+    },
+    {
+        path: "/api/addpost",
+        name: "AddPost",
+        component: AddPost,
+    },
+    {
+        path: "/api/signup",
+        name: "SignUp",
+        component: SignUp,
+    },
+    {
+        path: "/api/login",
+        name: "LogIn",
+        component: LogIn,
+    },
+    { //will route to AllPosts view if none of the previous routes apply
+        path: "/:catchAll(.*)",
+        name: "AllPosts",
+        component: AllPosts,
+    },
+    {
+      path: "/api/contactUs",
+      name: "Contacts",
+      component: ContactUs,
+    }
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
-  routes
+    history: createWebHistory(process.env.BASE_URL),
+    routes
 })
+
+
 
 export default router

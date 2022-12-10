@@ -1,15 +1,13 @@
 <template>
   <Header />
   <div class="form">
-    <h3>LogIn</h3>
+    <h3>SignUp</h3>
     <label for="email">Email</label>
     <input type="email" name="email"  required v-model="email">
     <label for="password">Password</label>
     <input type="password" name="password" required v-model="password">
-    <div class="container">
-      <button @click="LogIn"  class="center">LogIn</button>
-      <button @click='this.$router.push("/api/signup")' class="center">Signup</button>
-    </div>
+    <div v-if="errMsg">{{errMsg}} </div>
+    <button @click="SignUp" class="SignUp">SignUp</button>
   </div>
   <Footer />
 </template>
@@ -18,20 +16,34 @@
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 export default {
-name: "LogIn", 
+name: "SignUp", 
 data: function() {
     return {
    email: '',
    password: '',
+   errMsg: '',
   }
   },
+watch: {
+    password(value) {
+      this.password = value;
+      this.validatePassword(value);
+    }
+  },
   methods: {
-LogIn() {
+validatePassword(value) {
+      if (value.length < 8 || value.length >= 16 || !/[A-Z]/.test(value) || !/[0-9]/.test(value)) {
+        this.errMsg = "Password must be at least 8 characters  and less than 16 characters, it must include a capital letter and at least one number"
+      }else{
+      this.errMsg = ''
+      }
+    },
+SignUp() {
       var data = {
         email: this.email,
         password: this.password
       };
-      fetch("http://localhost:3000/auth/login", {
+      fetch("http://localhost:3000/auth/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -42,14 +54,14 @@ LogIn() {
       .then((response) => response.json())
       .then((data) => {
       console.log(data);
-      location.assign("/");
+      this.$router.push("/");
       })
       .catch((e) => {
         console.log(e);
         console.log("error");
       });
     },
-  }, 
+  },
   components: {
     Header,
     Footer
@@ -92,21 +104,14 @@ button {
   background: rgb(8, 110, 110);
   border: 0;
   padding: 10px 20px;
-  margin: 20px 20px 20px 20px;
+  margin-top: 20px;
   color: white;
   border-radius: 20px;
   align-items: center;
   text-align: center;
 }
-.center {
-  margin: auto;
-  border: 0;
+div {
   padding: 10px 20px;
   margin-top: 20px;
-  width: 30%; 
-}
-.container {
-  display: flex;
-  justify-content: center;
 }
 </style>

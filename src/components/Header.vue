@@ -2,10 +2,11 @@
   <div class="header">
     <h1>Header</h1>
     <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/contactUs">Contacts</router-link> |
-      <router-link to="/signup">Signup</router-link> |
-      <router-link to="/login">Login</router-link>
+      <router-link to="/api/allposts">Posts</router-link> |
+      <router-link to="/api/addpost">Add a Post</router-link> |
+      <router-link to="/api/signup">SignUp</router-link> |
+      <router-link to="/api/login">Login</router-link> |
+      <router-link to="/api/contactUs">Contacts</router-link>
     </nav>
   </div>
 </template>
