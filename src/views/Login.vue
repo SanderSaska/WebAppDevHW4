@@ -3,12 +3,12 @@
   <div class="form">
     <h3>LogIn</h3>
     <label for="email">Email</label>
-    <input type="email" name="email"  required v-model="email">
+    <input type="email" name="email" required v-model="email" />
     <label for="password">Password</label>
-    <input type="password" name="password" required v-model="password">
+    <input type="password" name="password" required v-model="password" />
     <div class="container">
-      <button @click="LogIn"  class="center">LogIn</button>
-      <button @click='this.$router.push("/api/signup")' class="center">Signup</button>
+      <button @click="LogIn" class="center">LogIn</button>
+      <button @click="this.$router.push('/api/signup')" class="center">Signup</button>
     </div>
   </div>
   <Footer />
@@ -18,43 +18,43 @@
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 export default {
-name: "LogIn", 
-data: function() {
+  name: "LogIn",
+  data: function () {
     return {
-   email: '',
-   password: '',
-  }
+      email: "",
+      password: "",
+    };
   },
   methods: {
-LogIn() {
+    LogIn() {
       var data = {
         email: this.email,
-        password: this.password
+        password: this.password,
       };
       fetch("http://localhost:3000/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-          credentials: 'include', 
-          body: JSON.stringify(data),
+        credentials: "include",
+        body: JSON.stringify(data),
       })
-      .then((response) => response.json())
-      .then((data) => {
-      console.log(data);
-      location.assign("/");
-      })
-      .catch((e) => {
-        console.log(e);
-        console.log("error");
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          location.assign("/");
+        })
+        .catch((e) => {
+          console.log(e);
+          console.log("error");
+        });
     },
-  }, 
+  },
   components: {
     Header,
-    Footer
-  }
-  }
+    Footer,
+  },
+};
 </script>
 
 <style scoped>
@@ -103,7 +103,7 @@ button {
   border: 0;
   padding: 10px 20px;
   margin-top: 20px;
-  width: 30%; 
+  width: 30%;
 }
 .container {
   display: flex;

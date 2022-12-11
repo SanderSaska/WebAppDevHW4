@@ -2,24 +2,26 @@
   <Header />
   <div class="AllPosts">
     <div id="post-list">
-    <h1>All Posts</h1>
-     <div class="container">
-    <button   @click="Logout" class="center">Logout</button>
-    </div>
+      <h1>All Posts</h1>
+      <div class="container">
+        <button v-if="authResult" @click="Logout" class="center">Logout</button>
+      </div>
       <ul>
         <div class="item" v-for="post in posts" :key="post.id">
-            <a class= 'singlepost' :href="'/api/apost/' + post.id">
-            <span class="title"> <b>Title:</b> {{ post.title }}  </span><br />
-            <span class="body"> <b>Body:</b> {{ post.body }} </span> <br />
-            <span class="url"> <b>Url:</b> {{ post.urllink }} </span> <br />
+          <a class="singlepost" :href="'/api/apost/' + post.id">
+            <span class="date"> {{ post.date }}</span> <br />
+            <span class="body"> {{ post.body }} </span> <br />
           </a>
         </div>
       </ul>
     </div>
+    <div id="buttons">
+      <button @click="this.$router.push('/api/addPost')" class="center">Add Post</button>
+      <button @click="DeleteAll" class="center">Delete All</button>
+    </div>
   </div>
   <Footer />
 </template>
-
 
 <script>
 import Header from "@/components/Header.vue";
@@ -38,6 +40,19 @@ export default {
         .then((data) => (this.posts = data))
         .catch((err) => console.log(err.message));
     },
+    Logout() {
+      fetch("http://localhost:3000/auth/logout", {
+        credentials: "include",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log("jwt removed");
+          location.assign("/"); // why redirect to the home directory?
+        })
+        .catch((e) => {
+          console.log("error logout");
+        });
+    },
   },
   mounted() {
     this.fetchPosts();
@@ -45,8 +60,8 @@ export default {
   },
   components: {
     Header,
-    Footer
-  }
+    Footer,
+  },
 };
 </script>
 
@@ -59,6 +74,13 @@ a {
 }
 a:hover {
   text-decoration: underline;
+}
+
+#buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-inline: 25vw;
 }
 .item {
   background: rgb(189, 212, 199);

@@ -14,13 +14,14 @@ app.use(cors({ origin: 'http://localhost:8080', credentials: true }));
 app.use(express.json());
 app.use(cookieParser());
 
+// generateJWT function
 const secret = "gdgdhdbcb770785rgdzqws";
 const maxAge = 60 * 60;
 const generateJWT = (id) => {
     return jwt.sign({ id }, secret, { expiresIn: maxAge })
 }
 
-app.post('/api/posts', async(req, res) => {
+app.post('/api/posts', async (req, res) => {
     try {
         console.log("a post request has arrived");
         const post = req.body;
@@ -33,7 +34,7 @@ app.post('/api/posts', async(req, res) => {
     }
 });
 
-app.get('/api/posts', async(req, res) => {
+app.get('/api/posts', async (req, res) => {
     try {
         console.log("get posts request has arrived");
         const posts = await pool.query(
@@ -45,7 +46,7 @@ app.get('/api/posts', async(req, res) => {
     }
 });
 
-app.get('/api/posts/:id', async(req, res) => {
+app.get('/api/posts/:id', async (req, res) => {
     try {
         console.log("get a post with route parameter  request has arrived");
         const { id } = req.params;
@@ -58,7 +59,7 @@ app.get('/api/posts/:id', async(req, res) => {
     }
 });
 
-app.put('/api/posts/:id', async(req, res) => {
+app.put('/api/posts/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const post = req.body;
@@ -72,7 +73,7 @@ app.put('/api/posts/:id', async(req, res) => {
     }
 });
 
-app.delete('/api/posts/:id', async(req, res) => {
+app.delete('/api/posts/:id', async (req, res) => {
     try {
         const { id } = req.params;
         console.log("delete a post request has arrived");
@@ -86,7 +87,7 @@ app.delete('/api/posts/:id', async(req, res) => {
 });
 
 
-app.post('/auth/signup', async(req, res) => {
+app.post('/auth/signup', async (req, res) => {
     try {
         console.log("a signup request has arrived");
         const { email, password } = req.body;
@@ -108,7 +109,7 @@ app.post('/auth/signup', async(req, res) => {
     }
 });
 
-app.post('/auth/login', async(req, res) => {
+app.post('/auth/login', async (req, res) => {
     try {
         console.log("a login request has arrived");
         const { email, password } = req.body;
@@ -124,6 +125,29 @@ app.post('/auth/login', async(req, res) => {
             .send;
     } catch (error) {
         res.status(401).json({ error: error.message });
+    }
+});
+
+app.get('/auth/authenticate', async (req, res) => {
+    const token = req.cookies.jwt;
+    let authenticated = false;
+    try {
+        if (token) { //checks if the token exists
+            //jwt.verify(token, secretOrPublicKey, [options, callback])
+            await jwt.verify(token, secret, (err) => { //token exists
+                if (err) { // not verified, redirect to login page
+                    console.log(err.message);
+                    res.send({ "authenticated": authenticated }); // false
+                } else { // token exists and it is verified
+                    authenticated = true;
+                    res.send({ "authenticated": authenticated }); // true
+                }
+            })
+        }
+        else { res.send({ "authenticated": authenticated }); } // false
+    }
+    catch (err) {
+        res.status(400).send(err.message);
     }
 });
 

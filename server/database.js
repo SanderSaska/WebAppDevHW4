@@ -10,7 +10,7 @@ const pool = new Pool({
 });
 
 
-const execute = async(query1, query2) => {
+const execute = async (query1, query2) => {
     try {
         await pool.connect(); // gets connection
         await pool.query(query1); // sends queries
@@ -25,9 +25,8 @@ const execute = async(query1, query2) => {
 const createTblQuery1 = `
     CREATE TABLE IF NOT EXISTS "posttable" (
 	    "id" SERIAL PRIMARY KEY,         
-	    "title" VARCHAR(200) NOT NULL,
 	    "body" VARCHAR(200) NOT NULL,
-        "urllink" VARCHAR(200)  
+        "date" date NOT NULL
     );`;
 
 const createTblQuery2 = `

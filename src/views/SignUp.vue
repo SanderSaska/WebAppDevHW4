@@ -25,6 +25,10 @@ data: function() {
   }
   },
 watch: {
+    email(value) {
+      this.email = value;
+      this.validateEmail(value);
+    },
     password(value) {
       this.password = value;
       this.validatePassword(value);
@@ -38,6 +42,13 @@ validatePassword(value) {
       this.errMsg = ''
       }
     },
+validateEmail(value) {
+  if (!/@./.test(value) || !/\../.test(value) || /@\./.test(value)) {
+    this.errMsg = "Email must include domain"
+  } else {
+    this.errMsg = ''
+  }
+},
 SignUp() {
       var data = {
         email: this.email,

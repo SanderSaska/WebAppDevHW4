@@ -4,12 +4,7 @@
         <p>{{post.username}}&ensp;&ensp;&ensp;</p>
         <p>{{post.date}}</p>
     </section>
-    <img class="image" v-bind:src="post.img_source">
     <p>{{post.description}}</p>
-    <section class="Likes">
-        <button @click="AddLike()">Like</button>
-        <p>{{post.likes}}</p>
-    </section>
 </template>
 
 <script>
@@ -18,10 +13,5 @@ export default {
     props: {
         post: { type: Object, default: {}},
     },
-    methods: {
-        AddLike() {
-            this.post.likes += 1;
-        }
-    }
 }
 </script>
