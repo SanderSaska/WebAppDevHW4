@@ -24,9 +24,7 @@ export default {
     return {
       post: {
         id: "",
-        title: "",
         body: "",
-        urllink: "",
       },
     };
   },
