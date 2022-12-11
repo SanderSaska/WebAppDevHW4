@@ -1,10 +1,12 @@
 <template>
   <Header />
-  <div class="form">
-    <h3>Add a Post</h3>
-    <label for="body">Body: </label>
-    <input name="body" type="text" id="body" required v-model="post.body" />
-    <button @click="addPost" class="addPost">Add Post</button>
+  <div class="container">
+    <div class="form">
+      <h3>Add a Post</h3>
+      <label for="body">Body: </label>
+      <input name="body" type="text" id="body" required v-model="post.body" />
+      <button @click="addPost" class="addPost">Add Post</button>
+    </div>
   </div>
   <Footer />
 </template>
@@ -53,9 +55,12 @@ export default {
 </script>
 
 <style scoped>
+.container {
+  height: 70vh;
+}
 .form {
-  max-width: 420px;
-  margin: 30px auto;
+  width: 420px;
+  margin: auto;
   background: rgb(167, 154, 154);
   text-align: left;
   padding: 40px;

@@ -1,13 +1,16 @@
 <template>
   <Header />
-  <div class="form">
-    <h3>SignUp</h3>
-    <label for="email">Email</label>
-    <input type="email" name="email"  required v-model="email">
-    <label for="password">Password</label>
-    <input type="password" name="password" required v-model="password">
-    <div v-if="errMsg">{{errMsg}} </div>
-    <button @click="SignUp" class="SignUp">SignUp</button>
+  <div class="page"></div>
+  <div class="container">
+    <div class="form">
+      <h3>SignUp</h3>
+      <label for="email">Email</label>
+      <input type="email" name="email"  required v-model="email">
+      <label for="password">Password</label>
+      <input type="password" name="password" required v-model="password">
+      <div v-if="errMsg">{{errMsg}} </div>
+      <button @click="SignUp" class="SignUp">SignUp</button>
+    </div>
   </div>
   <Footer />
 </template>
@@ -81,9 +84,12 @@ SignUp() {
 </script>
 
 <style scoped>
+.container {
+  height: 70vh;
+}
 .form {
-  max-width: 420px;
-  margin: 30px auto;
+  width: 420px;
+  margin: auto;
   background: rgb(167, 154, 154);
   text-align: left;
   padding: 40px;
@@ -120,9 +126,5 @@ button {
   border-radius: 20px;
   align-items: center;
   text-align: center;
-}
-div {
-  padding: 10px 20px;
-  margin-top: 20px;
 }
 </style>

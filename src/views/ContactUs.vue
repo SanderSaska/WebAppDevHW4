@@ -23,9 +23,11 @@ export default {
 </script>
 
 <style scoped>
-div {
+.contactUs {
   display: flex;
   padding: 20px;
   flex-direction: column;
+  height: 70vh;
+  justify-content: center;
 }
 </style>

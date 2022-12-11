@@ -8,7 +8,6 @@
       <ul>
         <div class="item" v-for="post in posts" :key="post.id">
           <a class="singlepost" :href="'/api/apost/' + post.id">
-            <p class="date">{{ formatDate(post.date) }}</p>
             <p class="body">{{ post.body }}</p>
           </a>
         </div>
@@ -25,7 +24,6 @@
 <script>
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
-import moment from 'moment';
 import auth from "../../server/auth";
 export default {
   name: "AllPosts",
@@ -69,11 +67,6 @@ export default {
           console.log(err.message);
         });
     },
-    formatDate(value){
-         if (value) {
-           return moment(String(value)).format('DD-MM-YYYY')
-          }
-      },
   },
   mounted() {
     this.fetchPosts();
@@ -87,6 +80,10 @@ export default {
 </script>
 
 <style scoped>
+.AllPosts {
+  height: 70vh;
+}
+
 a {
   text-decoration: none;
 }

@@ -1,5 +1,5 @@
 <template>
-    <div></div>
+    <div class="footer"></div>
 </template>
 
 <script>
@@ -9,10 +9,11 @@ export default {
 </script>
 
 <style scoped>
-div {
+.footer {
   display: flex;
   background-color: grey;
   padding: 20px;
   flex-direction: column;
+  height: 12vh;
 }
 </style>

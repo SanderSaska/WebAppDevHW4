@@ -1,14 +1,16 @@
 <template>
   <Header />
-  <div class="form">
-    <h3>LogIn</h3>
-    <label for="email">Email</label>
-    <input type="email" name="email" required v-model="email" />
-    <label for="password">Password</label>
-    <input type="password" name="password" required v-model="password" />
-    <div class="container">
-      <button @click="LogIn" class="center">LogIn</button>
-      <button @click="this.$router.push('/api/signup')" class="center">Signup</button>
+  <div class="page">
+    <div class="form">
+      <h3>LogIn</h3>
+      <label for="email">Email</label>
+      <input type="email" name="email" required v-model="email" />
+      <label for="password">Password</label>
+      <input type="password" name="password" required v-model="password" />
+      <div class="container">
+        <button @click="LogIn" class="center">LogIn</button>
+        <button @click="this.$router.push('/api/signup')" class="center">Signup</button>
+      </div>
     </div>
   </div>
   <Footer />
@@ -59,9 +61,13 @@ export default {
 </script>
 
 <style scoped>
+.page {
+  height: 70vh;
+  display: flex;
+}
 .form {
-  max-width: 420px;
-  margin: 30px auto;
+  width: 420px;
+  margin: auto;
   background: rgb(167, 154, 154);
   text-align: left;
   padding: 40px;

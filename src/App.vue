@@ -1,17 +1,12 @@
 <template>
-  <div>
-
-    <!-- <nav>
-      <router-link to="/api/allposts">Posts</router-link> |
-      <router-link to="/api/addpost">Add a Post</router-link> |
-      <router-link to="/api/signup">SignUp</router-link> |
-      <router-link to="/api/login">Login</router-link> |
-      <router-link to="/api/contactUs">Contacts</router-link>
-    </nav> -->
-    <router-view />
-  
-   
-  </div>
+  <!-- <nav>
+    <router-link to="/api/allposts">Posts</router-link> |
+    <router-link to="/api/addpost">Add a Post</router-link> |
+    <router-link to="/api/signup">SignUp</router-link> |
+    <router-link to="/api/login">Login</router-link> |
+    <router-link to="/api/contactUs">Contacts</router-link>
+  </nav> -->
+  <router-view />
 </template>
 
 <script>
@@ -40,16 +35,24 @@ export default {
 </script>
 
 <style>
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0 !important;
+}
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  height: 100vh;
+  width: 100vw;
 }
 
 nav {
-  padding: 30px;
+  padding: 15px;
 }
 
 nav a {
@@ -74,5 +77,11 @@ button{
 .container {
   display: flex;
   justify-content: center;
+}
+
+div {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; 
 }
 </style>
