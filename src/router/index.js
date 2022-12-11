@@ -16,7 +16,7 @@ const routes = [{
         let authResult = await auth.authenticated();
         console.log(authResult)
         if (!authResult) {
-            next('/login')
+            next('/api/login')
         } else {
             next();
         }
@@ -30,7 +30,7 @@ const routes = [{
         let authResult = await auth.authenticated();
         console.log(authResult)
         if (!authResult) {
-            next('/login')
+            next('/api/login')
         } else {
             next();
         }
@@ -44,7 +44,7 @@ const routes = [{
         let authResult = await auth.authenticated();
         console.log(authResult)
         if (!authResult) {
-            next('/login')
+            next('/api/login')
         } else {
             next();
         }
@@ -58,7 +58,7 @@ const routes = [{
         let authResult = await auth.authenticated();
         console.log(authResult)
         if (!authResult) {
-            next('/login')
+            next('/api/login')
         } else {
             next();
         }
@@ -78,6 +78,15 @@ const routes = [{
     path: "/:catchAll(.*)",
     name: "AllPosts",
     component: AllPosts,
+    beforeEnter: async (to, from, next) => {
+        let authResult = await auth.authenticated();
+        console.log(authResult)
+        if (!authResult) {
+            next('/api/login')
+        } else {
+            next();
+        }
+    }
 },
 {
     path: "/api/contactUs",
