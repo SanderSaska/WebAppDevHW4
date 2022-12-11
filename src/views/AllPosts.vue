@@ -2,7 +2,6 @@
   <Header />
   <div class="AllPosts">
     <div id="post-list">
-      <h1>All Posts</h1>
       <div class="container">
         <button v-if="authResult" @click="Logout" class="center">Logout</button>
       </div>
@@ -10,9 +9,7 @@
         <div class="item" v-for="post in posts" :key="post.id">
           <a class="singlepost" :href="'/api/apost/' + post.id">
             <p class="date">{{ post.date }}</p>
-            <br />
             <p class="body">{{ post.body }}</p>
-            <br />
           </a>
         </div>
       </ul>
@@ -84,9 +81,6 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  font-size: 20px;
-}
 a {
   text-decoration: none;
 }

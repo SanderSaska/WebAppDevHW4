@@ -40,7 +40,7 @@ const routes = [{
     path: "/api/apost/:id",
     name: "APost",
     component: APost,
-    beforeEnter: async (to, from, next) => {
+    /* beforeEnter: async (to, from, next) => {
         let authResult = await auth.authenticated();
         console.log(authResult)
         if (!authResult) {
@@ -48,7 +48,7 @@ const routes = [{
         } else {
             next();
         }
-    }
+    } */
 },
 {
     path: "/api/addpost",
