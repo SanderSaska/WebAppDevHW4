@@ -81,7 +81,7 @@ export default {
 
 <style scoped>
 .AllPosts {
-  height: 70vh;
+  min-height: 70vh;
 }
 
 a {
