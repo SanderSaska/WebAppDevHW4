@@ -18,7 +18,6 @@ export default {
 </script>
 
 <style scoped>
-
 .header {
   display: flex;
   background-color: gray;
