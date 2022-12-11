@@ -9,63 +9,79 @@ import auth from "../../server/auth";
 
 
 const routes = [{
-        path: '/',
-        name: 'AllPosts',
-        component: () =>
-            import ("../views/AllPosts.vue"),
-            beforeEnter: async(to, from, next) => {
-                let authResult = await auth.authenticated();
-                if (!authResult) {
-                    next('/Login')
-                } else {
-                    next();
-                }
-            }
-    },
-    {
-        path: "/api/allposts",
-        name: "AllPosts",
-        component: () =>
-            import ("../views/AllPosts.vue"),
-            beforeEnter: async(to, from, next) => {
-                let authResult = await auth.authenticated();
-                if (!authResult) {
-                    next('/Login')
-                } else {
-                    next();
-                }
-            }
-    },
-    {
-        path: "/api/apost/:id",
-        name: "APost",
-        component: APost,
-    },
-    {
-        path: "/api/addpost",
-        name: "AddPost",
-        component: AddPost,
-    },
-    {
-        path: "/api/signup",
-        name: "SignUp",
-        component: SignUp,
-    },
-    {
-        path: "/api/login",
-        name: "LogIn",
-        component: LogIn,
-    },
-    { //will route to AllPosts view if none of the previous routes apply
-        path: "/:catchAll(.*)",
-        name: "AllPosts",
-        component: AllPosts,
-    },
-    {
-      path: "/api/contactUs",
-      name: "Contacts",
-      component: ContactUs,
+    path: '/',
+    name: 'AllPosts',
+    component: AllPosts,
+    beforeEnter: async (to, from, next) => {
+        let authResult = await auth.authenticated();
+        console.log(authResult)
+        if (!authResult) {
+            next('/login')
+        } else {
+            next();
+        }
     }
+},
+{
+    path: "/api/allposts",
+    name: "AllPosts",
+    component: AllPosts,
+    beforeEnter: async (to, from, next) => {
+        let authResult = await auth.authenticated();
+        if (!authResult) {
+            next('/login')
+        } else {
+            next();
+        }
+    }
+},
+{
+    path: "/api/apost/:id",
+    name: "APost",
+    component: APost,
+    beforeEnter: async (to, from, next) => {
+        let authResult = await auth.authenticated();
+        if (!authResult) {
+            next('/login')
+        } else {
+            next();
+        }
+    }
+},
+{
+    path: "/api/addpost",
+    name: "AddPost",
+    component: AddPost,
+    beforeEnter: async (to, from, next) => {
+        let authResult = await auth.authenticated();
+        if (!authResult) {
+            next('/login')
+        } else {
+            next();
+        }
+    }
+
+},
+{
+    path: "/api/signup",
+    name: "SignUp",
+    component: SignUp,
+},
+{
+    path: "/api/login",
+    name: "LogIn",
+    component: LogIn,
+},
+{ //will route to Login view if none of the previous routes apply
+    path: "/:catchAll(.*)",
+    name: "AllPosts",
+    component: AllPosts,
+},
+{
+    path: "/api/contactUs",
+    name: "Contacts",
+    component: ContactUs,
+}
 ]
 
 const router = createRouter({
