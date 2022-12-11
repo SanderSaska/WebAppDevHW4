@@ -16,7 +16,7 @@ const routes = [{
             beforeEnter: async(to, from, next) => {
                 let authResult = await auth.authenticated();
                 if (!authResult) {
-                    next('/login')
+                    next('/Login')
                 } else {
                     next();
                 }
@@ -30,7 +30,7 @@ const routes = [{
             beforeEnter: async(to, from, next) => {
                 let authResult = await auth.authenticated();
                 if (!authResult) {
-                    next('/login')
+                    next('/Login')
                 } else {
                     next();
                 }
