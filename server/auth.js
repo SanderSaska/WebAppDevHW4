@@ -1,4 +1,3 @@
-
 export default {
     user: { authenticated: false },
     authenticated: function () {
@@ -8,8 +7,10 @@ export default {
             .then((response) => response.json())
             .then((data) => {
                 this.user.authenticated = data.authenticated;
+                console.log(data);
             })
             .catch((e) => {
+                console.log(e);
                 console.log("error logout");
             });
         return this.user.authenticated;

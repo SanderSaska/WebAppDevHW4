@@ -48,7 +48,7 @@ app.get('/api/posts', async (req, res) => {
 
 app.delete('/api/posts', async (req, res) => {
     try {
-        console.log("a delete all posts request has arrived");
+        console.log("delete all posts request has arrived");
         const deletepost = await pool.query(
             "TRUNCATE posttable"
         );
@@ -141,6 +141,7 @@ app.post('/auth/login', async (req, res) => {
 });
 
 app.get('/auth/authenticate', async (req, res) => {
+    console.log('authentication request has been arrived');
     const token = req.cookies.jwt;
     let authenticated = false;
     try {
@@ -149,16 +150,22 @@ app.get('/auth/authenticate', async (req, res) => {
             await jwt.verify(token, secret, (err) => { //token exists
                 if (err) { // not verified, redirect to login page
                     console.log(err.message);
+                    console.log('token is not verified');
                     res.send({ "authenticated": authenticated }); // false
                 } else { // token exists and it is verified
                     authenticated = true;
+                    console.log('author is authinticated');
                     res.send({ "authenticated": authenticated }); // true
                 }
             })
         }
-        else { res.send({ "authenticated": authenticated }); } // false
+        else {
+            console.log('author is not authinticated');
+            res.send({ "authenticated": authenticated });
+        } // false
     }
     catch (err) {
+        console.log(err.message);
         res.status(400).send(err.message);
     }
 });

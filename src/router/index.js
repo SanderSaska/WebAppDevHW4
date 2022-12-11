@@ -28,6 +28,7 @@ const routes = [{
     component: AllPosts,
     beforeEnter: async (to, from, next) => {
         let authResult = await auth.authenticated();
+        console.log(authResult)
         if (!authResult) {
             next('/login')
         } else {
@@ -41,6 +42,7 @@ const routes = [{
     component: APost,
     beforeEnter: async (to, from, next) => {
         let authResult = await auth.authenticated();
+        console.log(authResult)
         if (!authResult) {
             next('/login')
         } else {
@@ -54,13 +56,13 @@ const routes = [{
     component: AddPost,
     beforeEnter: async (to, from, next) => {
         let authResult = await auth.authenticated();
+        console.log(authResult)
         if (!authResult) {
             next('/login')
         } else {
             next();
         }
     }
-
 },
 {
     path: "/api/signup",
@@ -72,7 +74,7 @@ const routes = [{
     name: "LogIn",
     component: LogIn,
 },
-{ //will route to Login view if none of the previous routes apply
+{ //will route to Home view if none of the previous routes apply
     path: "/:catchAll(.*)",
     name: "AllPosts",
     component: AllPosts,

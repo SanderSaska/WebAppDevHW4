@@ -9,8 +9,10 @@
       <ul>
         <div class="item" v-for="post in posts" :key="post.id">
           <a class="singlepost" :href="'/api/apost/' + post.id">
-            <span class="date"> {{ post.date }}</span> <br />
-            <span class="body"> {{ post.body }} </span> <br />
+            <p class="date">{{ post.date }}</p>
+            <br />
+            <p class="body">{{ post.body }}</p>
+            <br />
           </a>
         </div>
       </ul>
@@ -26,13 +28,16 @@
 <script>
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
+import auth from "../../server/auth";
 export default {
   name: "AllPosts",
-  data() {
-    return {
-      posts: [],
-    };
-  },
+  components: {},
+    data() {
+      return {
+        posts: [],
+        authResult: auth.authenticated()
+      }
+    },
   methods: {
     fetchPosts() {
       fetch(`http://localhost:3000/api/posts/`)
@@ -55,17 +60,17 @@ export default {
     },
     DeleteAll() {
       fetch("http://localhost:3000/api/posts/", {
-      method: "DELETE",
-      headers: { "Content-Type": "application/json" },
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
       })
-      .then((response) => {
-        console.log(response.data)
-        this.$router.go();
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-    }
+        .then((response) => {
+          console.log(response.data);
+          this.$router.go();
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    },
   },
   mounted() {
     this.fetchPosts();
