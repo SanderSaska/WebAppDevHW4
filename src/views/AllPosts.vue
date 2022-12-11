@@ -53,6 +53,19 @@ export default {
           console.log("error logout");
         });
     },
+    DeleteAll() {
+      fetch("http://localhost:3000/api/posts/", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      })
+      .then((response) => {
+        console.log(response.data)
+        this.$router.go();
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+    }
   },
   mounted() {
     this.fetchPosts();
