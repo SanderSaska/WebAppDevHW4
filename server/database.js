@@ -14,6 +14,7 @@ const execute = async (query1, query2) => {
     try {
         await pool.connect(); // gets connection
         await pool.query(query1); // sends queries
+        await pool.query(query2); //
         return true;
     } catch (error) {
         console.error(error.stack);
