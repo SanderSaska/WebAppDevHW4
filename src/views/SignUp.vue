@@ -5,10 +5,10 @@
     <div class="form">
       <h3>SignUp</h3>
       <label for="email">Email</label>
-      <input type="email" name="email"  required v-model="email">
+      <input type="email" name="email" required v-model="email">
       <label for="password">Password</label>
       <input type="password" name="password" required v-model="password">
-      <div v-if="errMsg">{{errMsg}} </div>
+      <div v-if="errMsg">{{ errMsg }} </div>
       <button @click="SignUp" class="SignUp">SignUp</button>
     </div>
   </div>
@@ -19,15 +19,15 @@
 import Header from "@/components/Header.vue";
 import Footer from "@/components/Footer.vue";
 export default {
-name: "SignUp", 
-data: function() {
+  name: "SignUp",
+  data: function () {
     return {
-   email: '',
-   password: '',
-   errMsg: '',
-  }
+      email: '',
+      password: '',
+      errMsg: '',
+    }
   },
-watch: {
+  watch: {
     email(value) {
       this.email = value;
       this.validateEmail(value);
@@ -38,21 +38,21 @@ watch: {
     }
   },
   methods: {
-validatePassword(value) {
+    validatePassword(value) {
       if (value.length < 8 || value.length >= 16 || !/[A-Z]/.test(value) || !/[0-9]/.test(value)) {
         this.errMsg = "Password must be at least 8 characters  and less than 16 characters, it must include a capital letter and at least one number"
-      }else{
-      this.errMsg = ''
+      } else {
+        this.errMsg = ''
       }
     },
-validateEmail(value) {
-  if (!/@./.test(value) || !/\../.test(value) || /@\./.test(value)) {
-    this.errMsg = "Email must include domain"
-  } else {
-    this.errMsg = ''
-  }
-},
-SignUp() {
+    validateEmail(value) {
+      if (!/@./.test(value) || !/\../.test(value) || /@\./.test(value)) {
+        this.errMsg = "Email must include domain"
+      } else {
+        this.errMsg = ''
+      }
+    },
+    SignUp() {
       var data = {
         email: this.email,
         password: this.password
@@ -62,31 +62,32 @@ SignUp() {
         headers: {
           "Content-Type": "application/json",
         },
-          credentials: 'include', 
-          body: JSON.stringify(data),
+        credentials: 'include',
+        body: JSON.stringify(data),
       })
-      .then((response) => response.json())
-      .then((data) => {
-      console.log(data);
-      this.$router.push("/");
-      })
-      .catch((e) => {
-        console.log(e);
-        console.log("error");
-      });
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          this.$router.push("/");
+        })
+        .catch((e) => {
+          console.log(e);
+          console.log("error");
+        });
     },
   },
   components: {
     Header,
     Footer
   }
-  }
+}
 </script>
 
 <style scoped>
 .container {
   height: 70vh;
 }
+
 .form {
   width: 420px;
   margin: auto;
@@ -95,10 +96,12 @@ SignUp() {
   padding: 40px;
   border-radius: 10px;
 }
+
 h3 {
   text-align: center;
   color: rgb(8, 110, 110);
 }
+
 label {
   color: rgb(8, 110, 110);
   display: inline-block;
@@ -108,6 +111,7 @@ label {
   letter-spacing: 1px;
   font-weight: bold;
 }
+
 input {
   display: block;
   padding: 10px 6px;
@@ -117,6 +121,7 @@ input {
   border-bottom: 1px solid white;
   color: blue;
 }
+
 button {
   background: rgb(8, 110, 110);
   border: 0;

@@ -28,12 +28,12 @@ import auth from "../../server/auth";
 export default {
   name: "AllPosts",
   components: {},
-    data() {
-      return {
-        posts: [],
-        authResult: auth.authenticated()
-      }
-    },
+  data() {
+    return {
+      posts: [],
+      authResult: auth.authenticated()
+    }
+  },
   methods: {
     fetchPosts() {
       fetch(`http://localhost:3000/api/posts/`)
@@ -81,12 +81,13 @@ export default {
 
 <style scoped>
 .AllPosts {
-  height: 70vh;
+  min-height: 70vh;
 }
 
 a {
   text-decoration: none;
 }
+
 a:hover {
   text-decoration: underline;
 }
@@ -97,12 +98,14 @@ a:hover {
   justify-content: space-between;
   padding-inline: 25vw;
 }
+
 .item {
   background: rgb(189, 212, 199);
   margin-bottom: 5px;
   padding: 3px 5px;
   border-radius: 10px;
 }
+
 #post-list {
   background: #6e8b97;
   box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
@@ -112,9 +115,11 @@ a:hover {
   width: 50%;
   border-radius: 20px;
 }
+
 #post-list ul {
   padding: 0;
 }
+
 #post-list li {
   display: inline-block;
   margin-right: 10px;

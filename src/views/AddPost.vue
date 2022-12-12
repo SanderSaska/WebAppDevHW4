@@ -37,14 +37,14 @@ export default {
         },
         body: JSON.stringify(data),
       })
-      .then((response) => {
-        console.log(response.data);
-        this.$router.push("/api/allposts");
-      })
-      .catch((e) => {
-        console.log(e);
-        console.log("error");
-      });
+        .then((response) => {
+          console.log(response.data);
+          this.$router.push("/api/allposts");
+        })
+        .catch((e) => {
+          console.log(e);
+          console.log("error");
+        });
     },
   },
   components: {
@@ -58,6 +58,7 @@ export default {
 .container {
   height: 70vh;
 }
+
 .form {
   width: 420px;
   margin: auto;
@@ -66,10 +67,12 @@ export default {
   padding: 40px;
   border-radius: 10px;
 }
+
 h3 {
   text-align: center;
   color: rgb(8, 110, 110);
 }
+
 label {
   color: rgb(8, 110, 110);
   display: inline-block;
@@ -79,6 +82,7 @@ label {
   letter-spacing: 1px;
   font-weight: bold;
 }
+
 input {
   display: block;
   padding: 10px 6px;
@@ -88,6 +92,7 @@ input {
   border-bottom: 1px solid white;
   color: blue;
 }
+
 button {
   background: rgb(8, 110, 110);
   border: 0;

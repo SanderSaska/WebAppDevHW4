@@ -37,12 +37,12 @@ div p {
   font-size: 0.925em;
 }
 
-article + section {
+article+section {
   display: flex;
   flex-direction: row;
 }
 
-main > article {
+main>article {
   border-radius: 10px;
   background-color: rgb(220, 220, 220);
   display: flex;
@@ -52,7 +52,7 @@ main > article {
   width: calc(100vw - 36vw);
 }
 
-h3 ~ p {
+h3~p {
   font-size: 1.05em;
 }
 
